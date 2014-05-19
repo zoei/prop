@@ -11,6 +11,7 @@ var program = require('commander');
 //path
 var wamp_root = 'C:/wamp/www/prop';
 var apache_root = 'D:/Develop/xampp/htdocs/prop';
+var xampp_root = '/opt/lampp/htdocs/prop';
 var tomcat_root = './dist/www';
 
 var src_root = './www', des_root = './dist/www';
@@ -23,16 +24,20 @@ var src_root = './www', des_root = './dist/www';
 		.option('-a, --apache', 'output to apache server')
 		.option('-t, --tomcat', 'output to tomcat server')
 		.option('-w, --wamp', 'output to tomcat server')
+		.option('-x, --xampp', 'output to xampp server')
 		.parse(process.argv);
 
 	if(program.apache){
 		des_root = apache_root;
 	} else if(program.wamp){
 		des_root = wamp_root;
+	} else if(program.xampp){
+		des_root = xampp_root;
 	} else if(program.tomcat){
 		des_root = tomcat_root;
 	}
 })();
+console.log('des_root: ' + des_root);
 
 // src config
 var src_dir_js = src_root + '/js';
@@ -103,6 +108,7 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
+			src_dir_lib + '/bootstrap-wysiwyg.js',
 			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/angular.js',
@@ -120,6 +126,7 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
+			src_dir_lib + '/bootstrap-wysiwyg.js',
 			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/angular.js',
