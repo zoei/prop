@@ -1,11 +1,23 @@
 <navigation/>
-<div scrollable class="list" show-scrollbar="true" style="height: 500px;">
-	<li ng-repeat="food in foodlist">
-		<div ng-if="food.icon" class="ez-icon" style="background-image:url('{{food.icon}}')"></div>
-		<p>{{food.data.name}}</p>
-		<p>{{food.data.address}}</p>
-		<a ng-href="{{food.data.coupon_url}}">{{food.data.coupon_url}}</a>
-		<p>{{food.data.telephone}}</p>
-		<hr/>
-	</li>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="carousel slide" id="carousel-top">
+				<ol class="carousel-indicators">
+					<li ng-repeat="slide in slides" data-slide-to="{{$index}}" data-target="#carousel-top" class="{{slide.class}}">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div ng-repeat="slide in slides" replace="true" class="item{{slide.class}}">
+						<img alt="" ng-src="{{slide.image}}" />
+						<div class="carousel-caption">
+							<h4>{{slide.text}}</h4>
+							<p>{{slide.text}}</p>
+						</div>
+					</div>
+				</div> <a data-slide="prev" href="#carousel-top" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-top" class="right carousel-control">›</a>
+			</div>
+		</div>
+	</div>
 </div>

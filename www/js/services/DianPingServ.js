@@ -4,7 +4,7 @@ require([
 prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 	function($rootScope, HTTPProxy) {
 		var factory = {};
-		var way = 'jsonp';
+		var way = 'server';
 		var common = {
 			appkey: '86484869',
 			secret: '0c7c60d99eca4f7a9c02b1dcec69367c',
