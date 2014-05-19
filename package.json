@@ -15,7 +15,8 @@
     "gulp-pathmap": "~0.1.0",
     "gulp-rjs": "~0.1.0",
     "gulp-uglify": "~0.3.1",
-    "requirejs": "~2.1.14"
+    "requirejs": "~2.1.14",
+    "gulp": "~3.8.8"
   },
   "scripts": {
     "test": "run"
