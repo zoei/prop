@@ -20,9 +20,9 @@ namespace('App.controller').DianPingCtrl = ez.base.BaseController.extend({
 
 		$scope.$on('rc', searchBusiness);
 
-		$scope.$on('categoryChange', searchBusiness);
+		$scope.$on('cc', searchBusiness);
 
-		$scope.$on('subCategoryChange', searchBusiness);
+		$scope.$on('scc', searchBusiness);
 
 		$scope.formatName = function(name) {
 			/(.*)\(.*\)/.test(name);
