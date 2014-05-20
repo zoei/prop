@@ -7,5 +7,8 @@ namespace('prop.directives').Navigation = ez.base.BaseDirective.extend({
 		scope.back = function(){
 			window.history.go(-1);
 		};
+		var headroom  = new Headroom(element.context);
+		// 初始化
+		headroom.init(); 
 	}
 });

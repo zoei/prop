@@ -1,13 +1,12 @@
 <navigation/>
 <regions region-change="rc"/>
 <categories category-change="cc" sub-category-change="scc"/>
-<div scrollable class="list" show-scrollbar="true">
-	<li ng-repeat="item in itemlist">
+<div scrollable class="list-group" show-scrollbar="true">
+	<li ng-repeat="item in itemlist" class="list-group-item">
 		<div ng-if="item.icon" class="ez-icon" style="background-image:url('{{item.icon}}')" ng-click="goDetail(item)"></div>
-		<a ng-href="#/detail/{{item.business_id}}">{{formatName(item.name)}}</a>
-		<p>{{item.address}}</p>
+		<a ng-href="#/detail/{{item.business_id}}" class="list-group-item-heading">{{formatName(item.name)}}</a>
+		<p class="list-group-item-text">{{item.address}}</p>
 		<a ng-href="{{item.link}}">去点评查看</a>
 		<p>{{item.tel}}</p>
-		<hr/>
 	</li>
 </div>

@@ -6,8 +6,8 @@ Sort by:
   <option value="age">Newest</option>
 </select>
 <p>current phone is {{thePhone.age}}</p>
-<div scrollable class="list" show-scrollbar="true">
-<li ng-repeat="phone in phones | filter:query | orderBy:orderProp" hm-tap="onTap($event)">
+<div scrollable class="list-group" show-scrollbar="true">
+<li ng-repeat="phone in phones | filter:query | orderBy:orderProp" hm-tap="onTap($event)" class="list-group-item">
   <div ng-click="setPhone(phone)">set</div>
   <a href="#/detail/{{phone.id}}">{{phone.id}}</a>
   {{phone.name}}

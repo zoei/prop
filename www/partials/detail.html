@@ -7,8 +7,9 @@
 
 <hr/>
 
-<li ng-repeat="review in reviews">
-	<p>{{review.user_nickname}}&nbsp;&nbsp;{{review.created_time}}</p>
-	<p>{{review.text_excerpt}}</p>
-	<hr/>
-</li>
+<div scrollable class="list-group" show-scrollbar="true" class="list-group">
+	<li ng-repeat="review in reviews" class="list-group-item">
+		<p>{{review.user_nickname}}&nbsp;&nbsp;{{review.created_time}}</p>
+		<p>{{review.text_excerpt}}</p>
+	</li>
+</div>

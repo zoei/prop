@@ -108,7 +108,7 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
-			src_dir_lib + '/bootstrap-wysiwyg.js',
+			src_dir_lib + '/headroom.min.js',
 			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/angular.js',
@@ -126,7 +126,7 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
-			src_dir_lib + '/bootstrap-wysiwyg.js',
+			src_dir_lib + '/headroom.min.js',
 			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/angular.js',
