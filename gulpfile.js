@@ -4,6 +4,37 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var pathmap = require('gulp-pathmap');
+var rjs = require('gulp-rjs');
+var requirejs = require('requirejs');
+
+var requirejs_config = {
+	baseUrl: 'www/js',
+	dir: 'dist/www/js',
+	name: 'main',
+	fileExclusionRegExp: /^(r|build)\.js$/,
+	optimize: "none",
+	// optimize: "uglify",
+	optimizeCss: 'standard',
+	removeCombined: true,
+	paths: {
+		'angular': '../lib/angular',
+		'angular.resource': '../lib/angular-resource',
+		'angular.route': '../lib/angular-route',
+	},
+	shim: {
+		'angular': {
+			'exports': 'angular'
+		},
+		'angular.resource': {
+			'deps': ['angular'],
+			'exports': 'angular.resource'
+		},
+		'angular.route': {
+			'deps': ['angular'],
+			'exports': 'angular.route'
+		}
+	}
+};
 
 // src config
 var src_root = './www';
@@ -31,24 +62,35 @@ var des_file_deps_concat = 'deps.min.js';
 
 gulp.task('clean', function() {
 	gulp.src(des_root)
-		.pipe(clean());
+		.pipe(clean({force: true}));
 });
 
-gulp.task('concat', function() {
-	gulp.src(src_dir_lib + '/**/*.js')
-		//.pipe(uglify())
-		//.pipe(concat(des_file_deps_concat))
-		.pipe(gulp.dest(des_dir_lib));
+gulp.task('concat_lib', function() {
 	gulp.src([
-			src_dir_js + '/main.js',
-			src_dir_js + '/app.js',
-			src_dir_js + '/**/*.js',
-			src_dir_data + '/**/*.js'
-		])
-		//.pipe(uglify())
-		.pipe(concat(des_file_js_concat))
-		.pipe(gulp.dest(des_dir_js));
+		src_dir_lib + '/jquery-2.0.3.min.js',
+		src_dir_lib + '/bootstrap.min.js',
+		src_dir_lib + '/class.js',
+		src_dir_lib + '/namespace.js'
+	])
+		.pipe(uglify())
+		.pipe(concat(des_file_deps_concat))
+		.pipe(gulp.dest(des_dir_lib));
+	gulp.src(src_dir_lib + '/require.js')
+		.pipe(gulp.dest(des_dir_lib));
 });
+
+gulp.task('concat_js', function() {
+	gulp.src([
+		src_dir_js + '/main.js',
+		src_dir_js + '/**/*.js',
+		src_dir_data + '/**/*.js'
+	])
+	//.pipe(uglify())
+	//.pipe(concat(des_file_js_concat))
+	.pipe(gulp.dest(des_dir_js))
+		.pipe(rjs(requirejs_config));
+});
+
 
 gulp.task('copy', function() {
 	gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
@@ -58,4 +100,6 @@ gulp.task('copy', function() {
 	gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
 });
 
-gulp.task('default', ['clean', 'concat', 'copy']);
+gulp.task('default', ['clean', 'concat_lib', 'copy']);
+
+requirejs.optimize(requirejs_config);

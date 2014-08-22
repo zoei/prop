@@ -1,7 +1,5 @@
-'use strict';
-
 require.config({
-  baseUrl: 'js',
+  baseUrl: './js',
   paths: {
     'angular': '../lib/angular',
     'angular.resource': '../lib/angular-resource',
