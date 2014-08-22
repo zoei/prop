@@ -1,0 +1,22 @@
+{
+  "name": "prop",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "gulp-util": "~3.0.0",
+    "gulp": "~3.8.7"
+  },
+  "devDependencies": {
+    "gulp-concat": "~2.3.4",
+    "gulp-uglify": "~0.3.1",
+    "gulp-clean": "~0.3.1",
+    "gulp-pathmap": "~0.1.0",
+    "requirejs": "~2.1.14"
+  },
+  "scripts": {
+    "test": "run"
+  },
+  "author": "zoei",
+  "license": "BSD-2-Clause"
+}
