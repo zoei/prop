@@ -1,4 +1,4 @@
-define(['base/BaseController'], function(BaseController) {
+require(['base/BaseController'], function(BaseController) {
 	var pkg = namespace('App.controller');
 	var ListCtrl = pkg.ListCtrl = BaseController.extend({
 

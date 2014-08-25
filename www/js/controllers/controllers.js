@@ -1,8 +1,4 @@
-// define([
-// 	'controllers/ListController',
-// 	'controllers/DetailController'
-// ]);
-define([
+require([
 	'controllers/ListController',
 	'controllers/DetailController'
 ]);

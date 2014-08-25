@@ -1,4 +1,4 @@
-define(['angular', 'angular.resource'], function(angular) {
+require(['angular', 'angular.resource'], function(angular) {
 	var services = angular.module('prop.services', ['ngResource']);
 	services.factory('Phone', function($resource) {
 		return $resource('data/phones/:phoneId.json', {}, {

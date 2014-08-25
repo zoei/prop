@@ -1,4 +1,4 @@
-define(['angular'], function(angular) {
+require(['angular'], function(angular) {
 	var filters = angular.module('prop.filters', []);
 	filters.filter('checkmark', function() {
 		return function(input) {

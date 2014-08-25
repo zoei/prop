@@ -12,8 +12,8 @@ var requirejs_config = {
 	dir: 'dist/www/js',
 	name: 'main',
 	fileExclusionRegExp: /^(r|build)\.js$/,
+	// uglify, none
 	optimize: "none",
-	// optimize: "uglify",
 	optimizeCss: 'standard',
 	removeCombined: true,
 	paths: {
@@ -62,7 +62,9 @@ var des_file_deps_concat = 'deps.min.js';
 
 gulp.task('clean', function() {
 	gulp.src(des_root)
-		.pipe(clean({force: true}));
+		.pipe(clean({
+			force: true
+		}));
 });
 
 gulp.task('concat_lib', function() {
@@ -94,10 +96,10 @@ gulp.task('concat_js', function() {
 
 gulp.task('copy', function() {
 	gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
-	gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
 	gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
 	gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
 	gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
+	gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
 });
 
 gulp.task('default', ['clean', 'concat_lib', 'copy']);

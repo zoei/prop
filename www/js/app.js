@@ -1,4 +1,4 @@
-define('app', [
+require([
 		'angular',
 		'angular.resource',
 		'angular.route',
