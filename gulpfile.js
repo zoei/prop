@@ -60,48 +60,52 @@ var des_file_index = des_root + '/index.html';
 var des_file_js_concat = 'main.js';
 var des_file_deps_concat = 'deps.min.js';
 
-gulp.task('clean', function() {
-	gulp.src(des_root)
-		.pipe(clean({
-			force: true
-		}));
-});
+try {
+	gulp.task('clean', function() {
+		gulp.src(des_root)
+			.pipe(clean({
+				force: true
+			}));
+	});
 
-gulp.task('concat_lib', function() {
-	gulp.src([
-		src_dir_lib + '/jquery-2.0.3.min.js',
-		src_dir_lib + '/bootstrap.min.js',
-		src_dir_lib + '/class.js',
-		src_dir_lib + '/namespace.js'
-	])
-		.pipe(uglify())
-		.pipe(concat(des_file_deps_concat))
-		.pipe(gulp.dest(des_dir_lib));
-	gulp.src(src_dir_lib + '/require.js')
-		.pipe(gulp.dest(des_dir_lib));
-});
+	gulp.task('concat_lib', function() {
+		gulp.src([
+			src_dir_lib + '/jquery-2.0.3.min.js',
+			src_dir_lib + '/bootstrap.min.js',
+			src_dir_lib + '/class.js',
+			src_dir_lib + '/namespace.js'
+		])
+			.pipe(uglify())
+			.pipe(concat(des_file_deps_concat))
+			.pipe(gulp.dest(des_dir_lib));
+		gulp.src(src_dir_lib + '/require.js')
+			.pipe(gulp.dest(des_dir_lib));
+	});
 
-gulp.task('concat_js', function() {
-	gulp.src([
-		src_dir_js + '/main.js',
-		src_dir_js + '/**/*.js',
-		src_dir_data + '/**/*.js'
-	])
-	//.pipe(uglify())
-	//.pipe(concat(des_file_js_concat))
-	.pipe(gulp.dest(des_dir_js))
-		.pipe(rjs(requirejs_config));
-});
+	gulp.task('concat_js', function() {
+		gulp.src([
+			src_dir_js + '/main.js',
+			src_dir_js + '/**/*.js',
+			src_dir_data + '/**/*.js'
+		])
+		//.pipe(uglify())
+		//.pipe(concat(des_file_js_concat))
+		.pipe(gulp.dest(des_dir_js))
+			.pipe(rjs(requirejs_config));
+	});
 
+	gulp.task('copy', function() {
+		gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
+		gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
+		gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
+		gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
+		gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
+	});
 
-gulp.task('copy', function() {
-	gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
-	gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
-	gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
-	gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
-	gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
-});
+	gulp.task('default', ['clean', 'concat_lib', 'copy']);
 
-gulp.task('default', ['clean', 'concat_lib', 'copy']);
-
-requirejs.optimize(requirejs_config);
+	requirejs.optimize(requirejs_config);
+} catch (e) {
+	console.log('error: ');
+	console.log(e);
+}

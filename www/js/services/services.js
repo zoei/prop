@@ -1,22 +1,20 @@
-require(['angular', 'angular.resource'], function(angular) {
-	var services = angular.module('prop.services', ['ngResource']);
-	services.factory('Phone', function($resource) {
-		return $resource('data/phones/:phoneId.json', {}, {
-			query: {
-				method: 'GET',
-				params: {
-					phoneId: 'phones'
-				},
-				isArray: true
+require(['angular', 'angular.resource']);
+var services = angular.module('prop.services', ['ngResource']);
+services.factory('Phone', function($resource) {
+	return $resource('data/phones/:phoneId.json', {}, {
+		query: {
+			method: 'GET',
+			params: {
+				phoneId: 'phones'
 			},
-			get: {
-				method: 'GET',
-				params: {
-					phoneId: 'phones'
-				},
-				isArray: false
-			}
-		});
+			isArray: true
+		},
+		get: {
+			method: 'GET',
+			params: {
+				phoneId: 'phones'
+			},
+			isArray: false
+		}
 	});
-	return services;
 });

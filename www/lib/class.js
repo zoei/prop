@@ -57,7 +57,12 @@
 
     // And make this class extendable
     Class.extend = arguments.callee;
-    
+
+    // set public funcs
+    var publics = ['$inject'];
+    for (var i in publics) {
+      Class[publics[i]] = Class.prototype[publics[i]];
+    }
     return Class;
   };
 })();

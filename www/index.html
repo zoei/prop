@@ -16,11 +16,31 @@
 
     <script type="text/javascript" src="lib/class.js"></script>
     <script type="text/javascript" src="lib/namespace.js"></script>
-    <!--<script type="text/javascript" src="lib/angular.js"></script>
-    <script type="text/javascript" src="lib/angular-resource.js"></script>
-    <script type="text/javascript" src="lib/angular-route.js"></script>-->
     <script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap.js"></script>
     <script type="text/javascript" src="lib/require.js" data-main="js/main"></script>
+    <script type="text/javascript">
+        require.config({
+          baseUrl: './js',
+          paths: {
+            'angular': '../lib/angular',
+            'angular.resource': '../lib/angular-resource',
+            'angular.route': '../lib/angular-route',
+          },
+          shim: {
+            'angular': {
+              'exports': 'angular'
+            },
+            'angular.resource': {
+              'deps': ['angular'],
+              'exports': 'angular.resource'
+            },
+            'angular.route': {
+              'deps': ['angular'],
+              'exports': 'angular.route'
+            }
+          }
+        });
+    </script>
 </body>
 </html>
