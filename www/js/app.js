@@ -1,13 +1,11 @@
 require([
-	'angular',
-	'angular.resource',
-	'angular.route',
 	'filters/filters',
 	'services/services',
+	'directives/directives',
 	'controllers/controllers'
 ]);
 
-var prop = angular.module('prop', ['ngRoute', 'prop.filters', 'prop.services']);
+var prop = angular.module('prop', ['ngRoute', 'prop.filters', 'prop.services', 'prop.base.directives']);
 
 prop.config(['$routeProvider',
 	function($routeProvider) {

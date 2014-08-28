@@ -1,5 +1,3 @@
-require(['angular']);
-
 var filters = angular.module('prop.filters', []);
 filters.filter('checkmark', function() {
 	return function(input) {

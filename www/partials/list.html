@@ -5,9 +5,11 @@ Sort by:
   <option value="age">Newest</option>
 </select>
 <p>current phone is {{thePhone.age}}</p>
-<li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
-  <div ng-click="setPhone(phone)">set</div>
-  <a href="#/detail/{{phone.id}}">{{phone.id}}</a>
-  {{phone.name}}
-  <p>{{phone.snippet}}</p>
-</li>
+<scroller>
+	<li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+	  <div ng-click="setPhone(phone)">set</div>
+	  <a href="#/detail/{{phone.id}}">{{phone.id}}</a>
+	  {{phone.name}}
+	  <p>{{phone.snippet}}</p>
+	</li>
+</scroller>

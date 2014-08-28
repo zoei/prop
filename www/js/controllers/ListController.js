@@ -1,4 +1,4 @@
-require(['base/BaseController']);
+require(['base/BaseController', 'base/directives/Scroller']);
 
 namespace('App.controller');
 App.controller.ListCtrl = App.controller.BaseController.extend({

@@ -73,6 +73,7 @@ try {
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.min.js',
 			src_dir_lib + '/class.js',
+			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/namespace.js'
 		])
 			.pipe(uglify())
