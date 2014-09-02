@@ -6,6 +6,9 @@ App.controller.ListCtrl = App.controller.BaseController.extend({
 	init: function($scope, Phone) {
 		$scope.phones = Phone.query(function() {
 			$scope.thePhone = $scope.phones[0];
+			setTimeout(function() {
+				$scope.scroller.refresh()
+			}, 200);
 		});
 		$scope.orderProp = 'age';
 		$scope.setPhone = function(phone) {

@@ -1,10 +1,5 @@
-require([
-  'angular',
-  'angular.resource',
-  'angular.route',
-  'app'
-], function(angular) {
-  $(document).ready(function() {
-    angular.bootstrap(document, ['prop']);
-  });
+require(['app'], function() {
+	$(document).ready(function() {
+		angular.bootstrap(document, ['prop']);
+	});
 });

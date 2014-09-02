@@ -2,38 +2,35 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-var clean = require('gulp-clean');
+var del = require('del');
 var pathmap = require('gulp-pathmap');
 var rjs = require('gulp-rjs');
 var requirejs = require('requirejs');
 
+// rjs config
 var requirejs_config = {
 	baseUrl: 'www/js',
 	dir: 'dist/www/js',
 	name: 'main',
 	fileExclusionRegExp: /^(r|build)\.js$/,
-	// uglify, none
-	optimize: "none",
+	// uglify2, uglify, none
+	optimize: 'uglify2',
 	optimizeCss: 'standard',
 	removeCombined: true,
-	paths: {
-		'angular': '../lib/angular',
-		'angular.resource': '../lib/angular-resource',
-		'angular.route': '../lib/angular-route',
-	},
-	shim: {
-		'angular': {
-			'exports': 'angular'
+	uglify2: {
+		output: {
+			beautify: true
 		},
-		'angular.resource': {
-			'deps': ['angular'],
-			'exports': 'angular.resource'
+		compress: {
+			sequences: false,
+			global_defs: {
+				DEBUG: false
+			}
 		},
-		'angular.route': {
-			'deps': ['angular'],
-			'exports': 'angular.route'
-		}
+		warnings: true,
+		mangle: false
 	}
+
 };
 
 // src config
@@ -60,53 +57,53 @@ var des_file_index = des_root + '/index.html';
 var des_file_js_concat = 'main.js';
 var des_file_deps_concat = 'deps.min.js';
 
-try {
-	gulp.task('clean', function() {
-		gulp.src(des_root)
-			.pipe(clean({
+var tasks = {
+	del: function() {
+		del.sync([des_root], {
+			force: true
+		});
+	},
+	del_build_txt: function() {
+		setTimeout(function() {
+			del.sync([des_dir_js + '/build.txt'], {
 				force: true
-			}));
-	});
-
-	gulp.task('concat_lib', function() {
+			});
+		}, 500);
+	},
+	concat_lib: function() {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.min.js',
 			src_dir_lib + '/class.js',
 			src_dir_lib + '/iscroll.js',
-			src_dir_lib + '/namespace.js'
+			src_dir_lib + '/namespace.js',
+			src_dir_lib + '/angular.js',
+			src_dir_lib + '/angular-route.js',
+			src_dir_lib + '/angular-resource.js'
 		])
 			.pipe(uglify())
 			.pipe(concat(des_file_deps_concat))
-			.pipe(gulp.dest(des_dir_lib));
+			.pipe(gulp.dest(des_dir_js));
 		gulp.src(src_dir_lib + '/require.js')
-			.pipe(gulp.dest(des_dir_lib));
-	});
-
-	gulp.task('concat_js', function() {
-		gulp.src([
-			src_dir_js + '/main.js',
-			src_dir_js + '/**/*.js',
-			src_dir_data + '/**/*.js'
-		])
-		//.pipe(uglify())
-		//.pipe(concat(des_file_js_concat))
-		.pipe(gulp.dest(des_dir_js))
-			.pipe(rjs(requirejs_config));
-	});
-
-	gulp.task('copy', function() {
+			.pipe(gulp.dest(des_dir_js));
+	},
+	copy: function() {
 		gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
 		gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
 		gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
 		gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
 		gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
-	});
+	},
+	optimize: function(cb) {
+		requirejs.optimize(requirejs_config);
+		if (typeof cb === 'function')
+			cb();
+	}
+};
 
-	gulp.task('default', ['clean', 'concat_lib', 'copy']);
-
-	requirejs.optimize(requirejs_config);
-} catch (e) {
-	console.log('error: ');
-	console.log(e);
-}
+gulp.task('clean', tasks.del);
+gulp.task('concat_lib', [], tasks.concat_lib);
+gulp.task('copy', [], tasks.copy);
+gulp.task('optimize', [], tasks.optimize);
+gulp.task('del_build_txt', ['optimize'], tasks.del_build_txt);
+gulp.task('default', ['clean', 'concat_lib', 'copy', 'optimize', 'del_build_txt']);
