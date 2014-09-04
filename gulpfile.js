@@ -42,7 +42,8 @@ var src_dir_css = src_root + '/css';
 var src_dir_data = src_root + '/data';
 var src_dir_pages = src_root + '/pages';
 var src_dir_partials = src_root + '/partials';
-var src_file_index = src_root + '/index_product.html';
+var src_file_index = src_root + '/index.html';
+var src_file_index_product = src_root + '/index_product.html';
 
 // dest config
 var des_root = './dist/www';
@@ -73,13 +74,14 @@ var tasks = {
 	concat_lib: function() {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
-			src_dir_lib + '/bootstrap.min.js',
+			src_dir_lib + '/bootstrap.js',
 			src_dir_lib + '/class.js',
 			src_dir_lib + '/iscroll.js',
 			src_dir_lib + '/namespace.js',
 			src_dir_lib + '/angular.js',
 			src_dir_lib + '/angular-route.js',
-			src_dir_lib + '/angular-resource.js'
+			src_dir_lib + '/angular-resource.js',
+			src_dir_lib + '/gestures.js'
 		])
 			.pipe(uglify())
 			.pipe(concat(des_file_deps_concat))
@@ -87,8 +89,28 @@ var tasks = {
 		gulp.src(src_dir_lib + '/require.js')
 			.pipe(gulp.dest(des_dir_js));
 	},
-	copy: function() {
-		gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
+	concat_lib_debug: function() {
+		gulp.src([
+			src_dir_lib + '/jquery-2.0.3.min.js',
+			src_dir_lib + '/bootstrap.js',
+			src_dir_lib + '/class.js',
+			src_dir_lib + '/iscroll.js',
+			src_dir_lib + '/namespace.js',
+			src_dir_lib + '/angular.js',
+			src_dir_lib + '/angular-route.js',
+			src_dir_lib + '/angular-resource.js',
+			src_dir_lib + '/gestures.js'
+		])
+			.pipe(gulp.dest(des_dir_js));
+		gulp.src(src_dir_lib + '/require.js')
+			.pipe(gulp.dest(des_dir_js));
+	},
+	copy: function(debug) {
+		if(!!debug){
+			gulp.src(src_file_index).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
+		}else {
+			gulp.src(src_file_index_product).pipe(pathmap('www/index.html')).pipe(gulp.dest(des_root));
+		}
 		gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
 		gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
 		gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
@@ -103,7 +125,10 @@ var tasks = {
 
 gulp.task('clean', tasks.del);
 gulp.task('concat_lib', [], tasks.concat_lib);
-gulp.task('copy', [], tasks.copy);
+gulp.task('concat_lib_debug', [], tasks.concat_lib_debug);
+gulp.task('copy', [], function(){tasks.copy(false)});
+gulp.task('copy_debug', [], function(){tasks.copy(true)});
 gulp.task('optimize', [], tasks.optimize);
 gulp.task('del_build_txt', ['optimize'], tasks.del_build_txt);
 gulp.task('default', ['clean', 'concat_lib', 'copy', 'optimize', 'del_build_txt']);
+gulp.task('debug', ['clean', 'concat_lib_debug', 'copy_debug', 'optimize', 'del_build_txt']);

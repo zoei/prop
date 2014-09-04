@@ -14,34 +14,15 @@
 <body>
 	<div ng-view class="wrap content container"></div>
 
-    <script type="text/javascript" src="lib/class.js"></script>
-    <script type="text/javascript" src="lib/namespace.js"></script>
-    <script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="lib/bootstrap.js"></script>
-    <script type="text/javascript" src="lib/require.js" data-main="js/main"></script>
-    <script type="text/javascript" src="lib/iscroll.js"></script>
-    <script type="text/javascript">
-        require.config({
-          baseUrl: './js',
-          paths: {
-            'angular': '../lib/angular',
-            'angular.resource': '../lib/angular-resource',
-            'angular.route': '../lib/angular-route',
-          },
-          shim: {
-            'angular': {
-              'exports': 'angular'
-            },
-            'angular.resource': {
-              'deps': ['angular'],
-              'exports': 'angular.resource'
-            },
-            'angular.route': {
-              'deps': ['angular'],
-              'exports': 'angular.route'
-            }
-          }
-        });
-    </script>
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/class.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/namespace.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/angular-resource.js"></script>
+    <script type="text/javascript" src="js/gestures.js"></script>
+    <script type="text/javascript" src="js/require.js" data-main="js/main"></script>
 </body>
 </html>
