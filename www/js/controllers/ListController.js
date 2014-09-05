@@ -1,7 +1,5 @@
-require(['base/BaseController', 'base/directives/Scroller']);
-
 namespace('App.controller');
-App.controller.ListCtrl = App.controller.BaseController.extend({
+App.controller.ListCtrl = ez.base.BaseController.extend({
 	$inject: ['$scope', 'Phone'],
 	init: function($scope, Phone) {
 		$scope.phones = Phone.query(function() {

@@ -1,7 +1,5 @@
-require(['base/BaseController']);
-
 namespace('App.controller');
-App.controller.DetailCtrl = App.controller.BaseController.extend({
+App.controller.DetailCtrl = ez.base.BaseController.extend({
 	$inject: ['$scope', '$routeParams', 'Phone'],
 
 	init: function($scope, $routeParams, Phone) {

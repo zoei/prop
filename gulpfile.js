@@ -93,13 +93,12 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
-			src_dir_lib + '/class.js',
+			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
-			src_dir_lib + '/namespace.js',
 			src_dir_lib + '/angular.js',
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
-			src_dir_lib + '/gestures.js'
+			src_dir_lib + '/angular-hammer.js'
 		])
 			.pipe(gulp.dest(des_dir_js));
 		gulp.src(src_dir_lib + '/require.js')

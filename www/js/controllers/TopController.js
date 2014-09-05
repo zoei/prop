@@ -1,11 +1,9 @@
-require(['base/BaseController']);
-
 namespace('App.controller');
-App.controller.TopCtrl = App.controller.BaseController.extend({
+App.controller.TopCtrl = ez.base.BaseController.extend({
 	$inject: ['$scope'],
 	init: function($scope) {
-		$scope.onTap = function(e) {
-			console.debug('tap', e);
+		$scope.onE = function(type, e) {
+			console.debug(type, e);
 		};
 	}
 });

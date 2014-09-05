@@ -5,7 +5,7 @@ require([
 	'controllers/controllers'
 ]);
 
-var prop = angular.module('prop', ['ngRoute', 'angular-gestures', 'prop.filters', 'prop.services', 'prop.base.directives']);
+var prop = angular.module('prop', ['ngRoute', 'angular-gestures', 'ez', 'prop.filters', 'prop.services']);
 
 prop.config(['$routeProvider',
 	function($routeProvider) {

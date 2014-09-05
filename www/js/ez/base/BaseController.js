@@ -1,5 +1,5 @@
-namespace('App.controller');
-App.controller.BaseController = Class.extend({
+namespace('ez.base')
+ez.base.BaseController = Class.extend({
 
 	$scope: null,
 	$inject: ['$scope'],
