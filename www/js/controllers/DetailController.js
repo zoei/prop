@@ -6,6 +6,9 @@ App.controller.DetailCtrl = ez.base.BaseController.extend({
 		$scope.phone = Phone.get({
 			phoneId: $routeParams.phoneId
 		});
+		$scope.back = function(){
+			window.history.go(-1);
+		};
 	},
 
 

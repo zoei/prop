@@ -1,8 +1,6 @@
-var directives = angular.module('ez.directives', []);
-namespace('ez.directives');
-ez.directives.Scrollable = ez.base.BaseDirective.extend({
+namespace('ez.directives').Scrollable = ez.base.BaseDirective.extend({
 	directive: 'scrollable',
-	module: directives,
+	module: 'ez.directives',
 	restrict: 'EA',
 	replace: false,
 	transclude: true,

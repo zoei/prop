@@ -13,6 +13,9 @@ App.controller.ListCtrl = ez.base.BaseController.extend({
 		$scope.onTap = function(e) {
 			console.debug('tap', e);
 		};
+		$scope.back = function(){
+			window.history.go(-1);
+		};
 	}
 
 });

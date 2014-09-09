@@ -1,2 +1,1 @@
-require([
-]);
+namespace('prop').directives = angular.module('prop.directives', []);

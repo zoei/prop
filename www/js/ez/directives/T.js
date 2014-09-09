@@ -1,10 +1,6 @@
-require([
-	'ez/directives/Scroller'
-]);
-namespace('ez.directives')
-ez.directives.T = ez.base.BaseDirective.extend({
+namespace('ez.directives').T = ez.base.BaseDirective.extend({
 	directive: 't',
-	module: 'directives',
+	module: 'ez.directives',
 	restrict: 'EA',
 	template: '<div>1234</div>'
 });

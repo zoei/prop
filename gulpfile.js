@@ -6,11 +6,60 @@ var del = require('del');
 var pathmap = require('gulp-pathmap');
 var rjs = require('gulp-rjs');
 var requirejs = require('requirejs');
+var program = require('commander');
+
+//path
+var apache_root = 'D:/Develop/xampp/htdocs/prop';
+var tomcat_root = './dist/www';
+
+var src_root = './www', des_root = './dist/www';
+
+//set up
+(function setup(){
+	program
+		.version('0.0.1')
+		.option('-a, --apache', 'output to apache server')
+		.option('-t, --tomcat', 'output to tomcat server')
+		.option('-d, --debug', 'debug mode')
+		.parse(process.argv);
+
+	if(program.apache){
+		des_root = apache_root;
+	} else if(program.tomcat){
+		des_root = tomcat_root;
+	}
+})();
+
+// src config
+var src_dir_js = src_root + '/js';
+var src_dir_lib = src_root + '/lib';
+var src_dir_img = src_root + '/img';
+var src_dir_css = src_root + '/css';
+var src_dir_data = src_root + '/data';
+var src_dir_php = src_root + '/php';
+var src_dir_pages = src_root + '/pages';
+var src_dir_partials = src_root + '/partials';
+var src_file_index = src_root + '/index.html';
+var src_file_index_product = src_root + '/index_product.html';
+
+// dest config
+var des_dir_js = des_root + '/js';
+var des_dir_lib = des_root + '/lib';
+var des_dir_img = des_root + '/img';
+var des_dir_css = des_root + '/css';
+var des_dir_data = des_root + '/data';
+var des_dir_php = des_root + '/php';
+var des_dir_pages = des_root + '/pages';
+var des_dir_partials = des_root + '/partials';
+var des_file_index = des_root + '/index.html';
+var des_file_js_concat = 'main.js';
+var des_file_deps_concat = 'deps.min.js';
 
 // rjs config
 var requirejs_config = {
 	baseUrl: 'www/js',
-	dir: 'dist/www/js',
+	//dir: 'dist/www/js',
+	dir: des_dir_js,
 	name: 'main',
 	fileExclusionRegExp: /^(r|build)\.js$/,
 	// uglify2, uglify, none
@@ -33,31 +82,6 @@ var requirejs_config = {
 
 };
 
-// src config
-var src_root = './www';
-var src_dir_js = src_root + '/js';
-var src_dir_lib = src_root + '/lib';
-var src_dir_img = src_root + '/img';
-var src_dir_css = src_root + '/css';
-var src_dir_data = src_root + '/data';
-var src_dir_pages = src_root + '/pages';
-var src_dir_partials = src_root + '/partials';
-var src_file_index = src_root + '/index.html';
-var src_file_index_product = src_root + '/index_product.html';
-
-// dest config
-var des_root = './dist/www';
-var des_dir_js = des_root + '/js';
-var des_dir_lib = des_root + '/lib';
-var des_dir_img = des_root + '/img';
-var des_dir_css = des_root + '/css';
-var des_dir_data = des_root + '/data';
-var des_dir_pages = des_root + '/pages';
-var des_dir_partials = des_root + '/partials';
-var des_file_index = des_root + '/index.html';
-var des_file_js_concat = 'main.js';
-var des_file_deps_concat = 'deps.min.js';
-
 var tasks = {
 	del: function() {
 		del.sync([des_root], {
@@ -75,13 +99,12 @@ var tasks = {
 		gulp.src([
 			src_dir_lib + '/jquery-2.0.3.min.js',
 			src_dir_lib + '/bootstrap.js',
-			src_dir_lib + '/class.js',
+			src_dir_lib + '/hammer.js',
 			src_dir_lib + '/iscroll.js',
-			src_dir_lib + '/namespace.js',
 			src_dir_lib + '/angular.js',
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
-			src_dir_lib + '/gestures.js'
+			src_dir_lib + '/angular-hammer.js'
 		])
 			.pipe(uglify())
 			.pipe(concat(des_file_deps_concat))
@@ -112,6 +135,7 @@ var tasks = {
 		}
 		gulp.src(src_dir_img + '/**/*.*').pipe(gulp.dest(des_dir_img));
 		gulp.src(src_dir_data + '/**/*.*').pipe(gulp.dest(des_dir_data));
+		gulp.src(src_dir_php + '/**/*.*').pipe(gulp.dest(des_dir_php));
 		gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
 		gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
 	},

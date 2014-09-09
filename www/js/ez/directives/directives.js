@@ -1,4 +1,1 @@
-require([
-	'ez/directives/Scroller',
-	'ez/directives/T'
-]);
+namespace('ez').directives = angular.module('ez.directives', []);

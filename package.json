@@ -8,13 +8,14 @@
     "gulp": "~3.8.7"
   },
   "devDependencies": {
-    "gulp-concat": "~2.3.4",
-    "gulp-uglify": "~0.3.1",
+    "commander": "^2.3.0",
+    "del": "~0.1.2",
     "gulp-clean": "~0.3.1",
+    "gulp-concat": "~2.3.4",
     "gulp-pathmap": "~0.1.0",
-    "requirejs": "~2.1.14",
     "gulp-rjs": "~0.1.0",
-    "del": "~0.1.2"
+    "gulp-uglify": "~0.3.1",
+    "requirejs": "~2.1.14"
   },
   "scripts": {
     "test": "run"

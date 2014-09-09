@@ -67,3 +67,11 @@ html,body{
 .list{
 	height: 200px;
 }
+.ez-icon{
+	left: 15px;
+	width: 100px;
+	height: 100px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center center;
+}
