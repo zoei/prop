@@ -5,7 +5,7 @@ namespace('App.controller').HTTPProxyCtrl = ez.base.BaseController.extend({
 	$inject: ['$scope', 'DianPingBusiness'],
 
 	init: function($scope, DianPingBusiness) {
-		$scope.foodlist = DianPingBusiness.getRegions({'keyword': '清真菜'}, function(){
+		$scope.foodlist = DianPingBusiness.getRegions({'keyword': '菜'}, function(){
 			console.log($scope.foodlist);
 			$scope.scroller.delayRefresh();
 		}, 'ajax');
