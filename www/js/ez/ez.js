@@ -1,6 +1,7 @@
 require([
 	'ez/utils/Extend',
 	'ez/utils/Crypto',
+	'ez/utils/Base64',
 	'ez/Namespace',
 	'ez/Class',
 	'ez/base/BaseController',

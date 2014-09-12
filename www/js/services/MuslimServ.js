@@ -6,8 +6,8 @@ prop.services.factory('MuslimFood', ['$resource',
 				isArray : true,
 				params: getQueryObject(),
 				transformResponse : function(data){
+					console.log(data);
 					var items = [];
-
 					data = JSON.parse(data);
 					var datalist = data.businesses;
 					for(var i in datalist){
@@ -20,7 +20,6 @@ prop.services.factory('MuslimFood', ['$resource',
 						};	
 						items.push(item);
 					}
-					console.log(items);
 					return items;
 				}
 			}
@@ -47,7 +46,7 @@ function getApiParams(){
 	param["offset_type"]="2";  
 	param["has_coupon"]="1";  
 	param["has_deal"]="1";  
-	/*param["keyword"]="清真菜";  */
+	param["keyword"]="菜";
 	param["sort"]="7";
 	return param;
 }

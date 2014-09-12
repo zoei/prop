@@ -9,6 +9,7 @@ var requirejs = require('requirejs');
 var program = require('commander');
 
 //path
+var wamp_root = 'C:/wamp/www/prop';
 var apache_root = 'D:/Develop/xampp/htdocs/prop';
 var tomcat_root = './dist/www';
 
@@ -18,13 +19,16 @@ var src_root = './www', des_root = './dist/www';
 (function setup(){
 	program
 		.version('0.0.1')
+		.option('-d, --debug', 'debug mode')
 		.option('-a, --apache', 'output to apache server')
 		.option('-t, --tomcat', 'output to tomcat server')
-		.option('-d, --debug', 'debug mode')
+		.option('-w, --wamp', 'output to tomcat server')
 		.parse(process.argv);
 
 	if(program.apache){
 		des_root = apache_root;
+	} else if(program.wamp){
+		des_root = wamp_root;
 	} else if(program.tomcat){
 		des_root = tomcat_root;
 	}
@@ -63,7 +67,7 @@ var requirejs_config = {
 	name: 'main',
 	fileExclusionRegExp: /^(r|build)\.js$/,
 	// uglify2, uglify, none
-	optimize: 'uglify2',
+	optimize: 'none',
 	optimizeCss: 'standard',
 	removeCombined: true,
 	uglify2: {

@@ -1,56 +1,58 @@
 <?php
-
-//print_r($_REQUEST);
-
 //需要PHP 5 以上以及安装curl扩展
 
-//AppKey 信息，请替换
-define('APPKEY','86484869');
+// var_dump($_REQUEST);
 
-//AppSecret 信息，请替换
-define('SECRET','0c7c60d99eca4f7a9c02b1dcec69367c');
-
+$api = $_REQUEST['api'];
+$api = json_decode(base64_decode($api));
 
 //API 请求地址
-define('URL', $_REQUEST['url']);
-print(in_array('city', $_REQUEST));
+$api_url = $api->url;
+$api_params = $api->params;
+$api_post_data = $api->postData;
+$api_headers = $api->headers;
+
+$excludes = array('url');
 //示例请求参数
-$params = array();  
-$params["city"]=in_array('city', $_REQUEST) ? $_REQUEST['city'] : "上海";  
-$params["latitude"]=in_array('latitude', $_REQUEST) ? $_REQUEST['latitude'] : "31.218775";  
-$params["longitude"]=in_array('longitude', $_REQUEST) ? $_REQUEST['longitude'] : "121.464059";  
-$params["category"]=in_array('category', $_REQUEST) ? $_REQUEST['category'] : "美食";  
-//$params["region"]="黄浦区";  
-$params["limit"]=in_array('limit', $_REQUEST) ? $_REQUEST['limit'] : "20";  
-$params["radius"]=in_array('radius', $_REQUEST) ? $_REQUEST['radius'] : "5000";  
-$params["offset_type"]=in_array('offset_type', $_REQUEST) ? $_REQUEST['offset_type'] : "2";  
-$params["has_coupon"]=in_array('has_coupon', $_REQUEST) ? $_REQUEST['has_coupon'] : "1";  
-$params["has_deal"]=in_array('has_deal', $_REQUEST) ? $_REQUEST['has_deal'] : "1";  
-$params["keyword"]=in_array('keyword', $_REQUEST) ? $_REQUEST['keyword'] : "清真菜 新疆菜";
-$params["sort"]=in_array('sort', $_REQUEST) ? $_REQUEST['sort'] : "7";
+$params = array();
+foreach($api_params as $key=>$value) {
+	if(in_array($key, $excludes)){
+		continue;
+	}
+	$params[$key] = $value;
+}
 
 //按照参数名排序
 ksort($params);
-var_dump($params);
-
-//连接待加密的字符串
-$codes = APPKEY;
+// var_dump($params);
 
 //请求的URL参数
 $queryString = '';
+while (list($key, $val) = each($params)){
+	if($queryString === ''){
+  		$queryString .=($key.'='.urlencode($val));
+	}else{
+  		$queryString .=('&'.$key.'='.urlencode($val));
+	}
 
-while (list($key, $val) = each($params))
-{
-  $codes .=($key.$val);
-  $queryString .=('&'.$key.'='.urlencode($val));
 }
+$url= $api_url.'?'.$queryString;
+// var_dump($url);
 
-$codes .=SECRET;
-//print($codes);
+// 设置Header
+$headers = array();
+foreach($api_headers as $n => $v ) { 
+    $headers[] = $n .':' . $v;
+}
+// var_dump($headers);
 
-$sign = strtoupper(sha1($codes));
+// 设置Post数据
+$post_data = array();
+foreach($api_post_data as $key => $value ) { 
+    $post_data[$key] = $value;
+}
+// var_dump($post_data);
 
-$url= URL . '?appkey='.APPKEY.'&sign='.$sign.$queryString;
 
 $curl = curl_init();
 
@@ -60,25 +62,27 @@ curl_setopt($curl, CURLOPT_URL, $url);
 // 设置cURL 参数，要求结果保存到字符串中还是输出到屏幕上。
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
+// 设置编码
 curl_setopt($curl, CURLOPT_ENCODING, 'UTF-8');
+
+// 设置Header
+if(count($headers) > 0){
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+}
+
+// 设置Post数据
+if(count($post_data) > 0){
+	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+}
 
 // 运行cURL，请求API
 $output = curl_exec($curl);
-//echo $output;
+echo $output;
 
-print_r($output);
+// print_r($output);
 // $data = json_decode($output, true);
 
 // 关闭URL请求
 curl_close($curl);
-
-// print('Your request based on: ');
-// print('<br/>');
-// print_r($params);
-// print('<br/>');
-// print('Result:');
-// print('<hr/>');
-
-// var_dump($data);
  
 ?>
