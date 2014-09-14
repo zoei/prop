@@ -5,3 +5,11 @@ function extend(Child, Parent) {　　
 	Child.prototype.constructor = Child;
 	Child.uber = Parent.prototype;
 }
+
+function __default__(obj, defaults) {
+	for(var p in defaults){
+		if(!(p in obj))
+			obj[p] = defaults[p];
+	}
+	return obj;
+}

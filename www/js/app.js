@@ -11,7 +11,7 @@ prop.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.when('/dianpingtest', {
 			templateUrl: 'partials/dianpingtest.html',
-			controller: 'App.controller.HTTPProxyCtrl'
+			controller: 'App.controller.DianPingCtrl'
 		});
 		$routeProvider.when('/top', {
 			templateUrl: 'partials/top.html',

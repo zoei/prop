@@ -1,6 +1,7 @@
-prop.services.factory('DianPingBusiness', ['$rootScope', 'HTTPProxy',
+prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 	function($rootScope, HTTPProxy) {
 		var factory = {};
+		var way = 'server';
 		var common = {
 			appkey: '86484869',
 			secret: '0c7c60d99eca4f7a9c02b1dcec69367c',
@@ -27,7 +28,7 @@ prop.services.factory('DianPingBusiness', ['$rootScope', 'HTTPProxy',
 				for (var p in extraParams) {
 					param[p] = extraParams[p];
 				}
-				console.log(param);
+				// console.log(param);
 				var sign = this.getSecretSign(param);
 				param["sign"] = sign;
 				param["appkey"] = common.appkey;
@@ -35,8 +36,7 @@ prop.services.factory('DianPingBusiness', ['$rootScope', 'HTTPProxy',
 			}
 		};
 
-		factory.getRegions = function(params, callback, way) {
-			var jsonpResource, ajaxResource;
+		factory.getBusiness = function(params, callback) {
 			var defaultParams = {
 				city: "上海",
 				latitude: "31.218775",
@@ -51,20 +51,13 @@ prop.services.factory('DianPingBusiness', ['$rootScope', 'HTTPProxy',
 				keyword: "菜",
 				sort: "7",
 			};
-			var config = {
-				url: 'http://api.dianping.com/v1/business/find_businesses',
-				params: common.getQueryObject(defaultParams, params),
-				postData: {},
-				headers: {
-					'X-Contract': true
-				}
-			};
 
 			var transform = function(data) {
-				console.log(data);
 				var items = [];
 
-				data = JSON.parse(data);
+				if(typeof data === 'string'){
+					data = JSON.parse(data);
+				}
 				var datalist = data.businesses;
 				for (var i in datalist) {
 					var d = datalist[i];
@@ -79,14 +72,78 @@ prop.services.factory('DianPingBusiness', ['$rootScope', 'HTTPProxy',
 				return items;
 			};
 
-			if (way === 'ajax') {
-				ajaxResource = ajaxResource ? ajaxResource : HTTPProxy.ajax(config, transform, true);
-				return ajaxResource.request(callback);
+			var request = {
+				url: 'http://api.dianping.com/v1/business/find_businesses',
+				params: common.getQueryObject(defaultParams, params),
+				postData: {},
+				headers: {
+					'X-Contract': true
+				}
+			};
+
+			var config = {
+				uri: request.url,
+				format: 'json',
+				isArray: true,
+				transformResponse: transform,
+				way: way
+			};
+
+			factory._businessResource = factory._businessResource || HTTPProxy.init(config);
+			if(way === 'jsonp' || way === 'server'){
+				return factory._businessResource.request(App.util.HTTPProxyUtil.format(request), callback);
 			} else {
-				jsonpResource = jsonpResource ? jsonpResource : HTTPProxy.jsonp(true, transform);
-				return jsonpResource.request(App.util.HTTPProxyUtil.format(config), callback);
+				return factory._businessResource.request(request.params, callback);
 			}
 		};
+
+		factory.getRegions = function(params, callback) {
+			var jsonpResource, ajaxResource;
+			var defaultParams = {
+				city: "上海"
+			};
+
+			var transform = function(data) {
+				var items = [];
+
+				if(typeof data === 'string'){
+					data = JSON.parse(data);
+				}
+				var datalist = data.cities[0].districts;
+				for (var i in datalist) {
+					var d = datalist[i];
+					if (!d) continue;
+					var item = {
+						name: d.district_name,
+						neighborhoods: d.neighborhoods,
+						data: d
+					};
+					items.push(item);
+				}
+				return items;
+			};
+
+			var request = {
+				url: 'http://api.dianping.com/v1/metadata/get_regions_with_businesses',
+				params: common.getQueryObject(defaultParams, params)
+			};
+
+			var config = {
+				uri: request.url,
+				format: 'json',
+				isArray: true,
+				transformResponse: transform,
+				way: way
+			};
+
+			factory._regionsResource = factory._regionsResource || HTTPProxy.init(config);
+			if(way === 'jsonp' || way === 'server'){
+				return factory._regionsResource.request(App.util.HTTPProxyUtil.format(request), callback);
+			} else {
+				return factory._regionsResource.request(request.params, callback);
+			}
+		};
+		
 		return factory;
 	}
 ]);

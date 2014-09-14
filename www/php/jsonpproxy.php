@@ -3,14 +3,35 @@
 
 // var_dump($_REQUEST);
 
-$api = $_REQUEST['api'];
+$api = $_REQUEST['_'];
 $api = json_decode(base64_decode($api));
 
 //API 请求地址
 $api_url = $api->url;
-$api_params = $api->params;
-$api_post_data = $api->postData;
-$api_headers = $api->headers;
+
+if(array_key_exists('params', $api)){
+	$api_params = $api->params;
+}else{	
+	$api_params = array();
+}
+
+if(array_key_exists('postData', $api)){
+	$api_post_data = $api->postData;
+}else{	
+	$api_post_data = array();
+}
+
+if(array_key_exists('headers', $api)){
+	$api_headers = $api->headers;
+}else{	
+	$api_headers = array();
+}
+
+if(array_key_exists('callback', $_GET)){
+	$api_callback = $_GET['callback'];
+}else{	
+	$api_callback = NULL;
+}
 
 $excludes = array('url');
 //示例请求参数
@@ -77,7 +98,15 @@ if(count($post_data) > 0){
 
 // 运行cURL，请求API
 $output = curl_exec($curl);
-echo $output;
+
+if($api_callback){
+	header("Content-type:text/javascript;charset=utf8");
+	echo $api_callback.'('.$output.')';
+}else{
+	// header("Content-type:application/json;charset=utf8");
+	// header("Content-Type:application/javascript;charset=utf8");
+	echo $output;
+}
 
 // print_r($output);
 // $data = json_decode($output, true);

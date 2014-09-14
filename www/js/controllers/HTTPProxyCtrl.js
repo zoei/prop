@@ -1,20 +1,19 @@
 require([
 	'utils/HTTPProxyUtil'
 ]);
-namespace('App.controller').HTTPProxyCtrl = ez.base.BaseController.extend({
-	$inject: ['$scope', 'DianPingBusiness'],
+namespace('App.controller').DianPingCtrl = ez.base.BaseController.extend({
+	$inject: ['$scope', 'DianPingApi'],
 
-	init: function($scope, DianPingBusiness) {
-		$scope.foodlist = DianPingBusiness.getRegions({'keyword': '菜'}, function(){
-			console.log($scope.foodlist);
+	init: function($scope, DianPingApi) {
+		$scope.foodlist = DianPingApi.getBusiness({'keyword': '菜'}, function(){
 			$scope.scroller.delayRefresh();
-		}, 'ajax');
+		});
+		// $scope.regionlist = DianPingApi.getRegions({city: '上海'}, function(data){
+		// 	$scope.defaultRegion = data[0];
+		// });
 		$scope.clickItem = function(index, item) {
 			console.log(item.data);
 			window.location.href = '#/muslim/' + item.data.full + '-' + item.data.plug;
-		};
-		$scope.back = function() {
-			window.history.go(-1);
 		};
 		$scope.formatName = function(name) {
 			/(.*)\(.*\)/.test(name);

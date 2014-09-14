@@ -67,7 +67,7 @@ var requirejs_config = {
 	name: 'main',
 	fileExclusionRegExp: /^(r|build)\.js$/,
 	// uglify2, uglify, none
-	optimize: 'none',
+	optimize: 'uglify2',
 	optimizeCss: 'standard',
 	removeCombined: true,
 	uglify2: {
