@@ -2,7 +2,7 @@ require([
 	'filters/filters',
 	'services/__import',
 	'directives/__import',
-	'controllers/controllers'
+	'controllers/__import'
 ]);
 
 var prop = angular.module('prop', ['ngRoute', 'angular-gestures', 'ez', 'prop.directives', 'prop.filters', 'prop.services']);

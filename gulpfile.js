@@ -87,7 +87,7 @@ var requirejs_config = {
 };
 
 var tasks = {
-	del: function() {
+	del: function() {	
 		del.sync([des_root], {
 			force: true
 		});

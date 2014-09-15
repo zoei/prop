@@ -1,6 +1,6 @@
 <navigation/>
 <regions></regions>
-<div scrollable class="list" show-scrollbar="true" style="height: 500px;">
+<div scrollable class="list" show-scrollbar="true" style="height: 100%;">
 	<li ng-repeat="food in foodlist">
 		<div ng-if="food.icon" class="ez-icon" style="background-image:url('{{food.icon}}')"></div>
 		<p>{{formatName(food.data.name)}}</p>

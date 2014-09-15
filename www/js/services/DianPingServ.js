@@ -1,3 +1,6 @@
+require([
+	'utils/HTTPProxyUtil'
+]);
 prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 	function($rootScope, HTTPProxy) {
 		var factory = {};
@@ -115,8 +118,7 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 					if (!d) continue;
 					var item = {
 						name: d.district_name,
-						neighborhoods: d.neighborhoods,
-						data: d
+						neighborhoods: d.neighborhoods
 					};
 					items.push(item);
 				}
