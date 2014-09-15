@@ -14,6 +14,8 @@ html,body{
 	/*height:auto !important;*/
 	/*margin:0 auto -80px;*/
 	max-width:640px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 .header{
 	height:100%;
@@ -37,6 +39,7 @@ html,body{
 	font-weight:bold;
 }
 .wrapper{
+	-webkit-box-flex: 1;
 	display: block;
 	width: auto;
 	height: auto;
@@ -66,7 +69,7 @@ html,body{
 	text-size-adjust: none;
 }
 .list{
-	height: 200px;
+	/*height: 200px;*/
 }
 .ez-icon{
 	left: 15px;
