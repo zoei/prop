@@ -1,5 +1,5 @@
 require([
-	'controllers/HTTPProxyCtrl',
+	'controllers/DianPingCtrl',
 	'controllers/TopController',
 	'controllers/ListController',
 	'controllers/DetailController',

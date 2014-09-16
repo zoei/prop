@@ -5,19 +5,13 @@ namespace('App.controller').DianPingCtrl = ez.base.BaseController.extend({
 		var searchBusiness = function(){
 			var region = $scope.region ? $scope.region.name : '黄浦区';
 			$scope.foodlist = DianPingApi.getBusiness({region: region,'keyword': '菜'}, function(){
-				$scope.scroller.delayRefresh();
+				if($scope.scroller){
+					$scope.scroller.delayRefresh();
+				}
 			});
 		};
 		searchBusiness();
 
-   //      $scope.$watch("region", function() {
-   //      	console.log('watch', $scope.region);
-			// searchBusiness();
-   //      });
-   //      $scope.$on("regionChanged", function(region) {
-   //      	console.log('on', $scope.region);
-			// searchBusiness();
-   //      });
 		$scope.regionChanged = function(){
         	console.log('regionChanged', $scope.region);
 			searchBusiness();

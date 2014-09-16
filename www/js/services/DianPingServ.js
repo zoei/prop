@@ -42,8 +42,6 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 		factory.getBusiness = function(params, callback) {
 			var defaultParams = {
 				city: "上海",
-				latitude: "31.218775",
-				longitude: "121.464059",
 				category: "美食",
 				region: "黄浦区",
 				limit: "20",
@@ -145,7 +143,53 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 				return factory._regionsResource.request(request.params, callback);
 			}
 		};
-		
+
+		factory.getCategories = function(params, callback) {
+			var jsonpResource, ajaxResource;
+			var defaultParams = {
+				city: "上海"
+			};
+
+			var transform = function(data) {
+				var items = [];
+
+				if(typeof data === 'string'){
+					data = JSON.parse(data);
+				}
+				var datalist = data.categories;
+				for (var i in datalist) {
+					var d = datalist[i];
+					if (!d) continue;
+					var item = {
+						name: d.category_name,
+						neighborhoods: d.subcategoriess
+					};
+					items.push(item);
+				}
+				return items;
+			};
+
+			var request = {
+				url: 'http://api.dianping.com/v1/metadata/get_categories_with_businesses',
+				params: common.getQueryObject(defaultParams, params)
+			};
+
+			var config = {
+				uri: request.url,
+				format: 'json',
+				isArray: true,
+				transformResponse: transform,
+				way: way
+			};
+
+			factory._categoriesResource = factory._categoriesResource || HTTPProxy.init(config);
+			if(way === 'jsonp' || way === 'server'){
+				return factory._categoriesResource.request(App.util.HTTPProxyUtil.format(request), callback);
+			} else {
+				return factory._categoriesResource.request(request.params, callback);
+			}
+		};
+
 		return factory;
 	}
 ]);
