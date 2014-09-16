@@ -21,7 +21,7 @@ prop.config(['$routeProvider',
 			templateUrl: 'partials/list.html',
 			controller: 'App.controller.ListCtrl'
 		});
-		$routeProvider.when('/detail/:phoneId', {
+		$routeProvider.when('/detail/:business_id', {
 			templateUrl: 'partials/detail.html',
 			controller: 'App.controller.DetailCtrl'
 		});

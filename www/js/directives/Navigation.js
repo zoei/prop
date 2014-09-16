@@ -7,10 +7,5 @@ namespace('prop.directives').Navigation = ez.base.BaseDirective.extend({
 		scope.back = function(){
 			window.history.go(-1);
 		};
-	},
-	// controller: function(scope, element, attrs){
-	// 	scope.back = function(){
-	// 		window.history.go(-1);
-	// 	};
-	// }
+	}
 });

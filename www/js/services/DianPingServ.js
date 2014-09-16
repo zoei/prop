@@ -44,12 +44,14 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 				city: "上海",
 				category: "美食",
 				region: "黄浦区",
+				latitude: '31.218931',
+				longitude: '121.463939',
 				limit: "20",
 				radius: "5000",
 				offset_type: "2",
 				has_coupon: "1",
 				has_deal: "1",
-				keyword: "菜",
+				// keyword: "菜",
 				sort: "7",
 			};
 
@@ -60,13 +62,16 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 					data = JSON.parse(data);
 				}
 				var datalist = data.businesses;
+				console.log(datalist);
 				for (var i in datalist) {
 					var d = datalist[i];
 					if (!d) continue;
 					var item = {
+						business_id: d.business_id,
 						icon: d.photo_url,
-						text: d.name,
-						data: d
+						name: d.name,
+						address: d.address,
+						tel: d.telephone
 					};
 					items.push(item);
 				}
@@ -187,6 +192,88 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 				return factory._categoriesResource.request(App.util.HTTPProxyUtil.format(request), callback);
 			} else {
 				return factory._categoriesResource.request(request.params, callback);
+			}
+		};
+
+		factory.getDetail = function(params, callback) {
+			var jsonpResource, ajaxResource;
+			var defaultParams = {};
+
+			var transform = function(data) {
+
+				if(typeof data === 'string'){
+					data = JSON.parse(data);
+				}
+				var d = data.businesses[0];
+				var item = {
+					business_id: d.business_id,
+					icon: d.photo_url,
+					name: d.name,
+					address: d.address,
+					tel: d.telephone
+				};
+				return item;
+			};
+
+			var request = {
+				url: 'http://api.dianping.com/v1/business/get_single_business',
+				params: common.getQueryObject(defaultParams, params)
+			};
+
+			var config = {
+				uri: request.url,
+				format: 'json',
+				isArray: false,
+				transformResponse: transform,
+				way: way
+			};
+
+			factory._detailResource = factory._detailResource || HTTPProxy.init(config);
+			if(way === 'jsonp' || way === 'server'){
+				return factory._detailResource.request(App.util.HTTPProxyUtil.format(request), callback);
+			} else {
+				return factory._detailResource.request(request.params, callback);
+			}
+		};
+
+		factory.getReviews = function(params, callback) {
+			var jsonpResource, ajaxResource;
+			var defaultParams = {};
+
+			var transform = function(data) {
+				var items = [];
+
+				if(typeof data === 'string'){
+					data = JSON.parse(data);
+				}
+				var datalist = data.reviews;
+				for (var i in datalist) {
+					var d = datalist[i];
+					if (!d) continue;
+					var item = d;
+					items.push(item);
+				}
+				return items;
+			};
+
+			var request = {
+				url: 'http://api.dianping.com/v1/review/get_recent_reviews',
+				params: common.getQueryObject(defaultParams, params)
+			};
+
+			var config = {
+				uri: request.url,
+				format: 'json',
+				isArray: true,
+				transformResponse: transform,
+				way: way
+			};
+
+			factory._reviewsResource = factory._reviewsResource || HTTPProxy.init(config);
+			if(way === 'jsonp' || way === 'server'){
+				return factory._reviewsResource.request(App.util.HTTPProxyUtil.format(request), callback);
+			} else {
+				return factory._reviewsResource.request(request.params, callback);
 			}
 		};
 

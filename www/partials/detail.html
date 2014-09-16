@@ -1,3 +1,14 @@
 <navigation/>
-{{phone.id}}
-<dd>{{phone.connectivity | checkmark}}</dd>
+<div ng-if="item.icon" class="ez-icon" style="background-image:url('{{item.icon}}')" ng-click="goDetail(item)"></div>
+<a ng-href="#/detail/{{item.business_id}}">{{formatName(item.name)}}</a>
+<p>{{item.address}}</p>
+<a ng-href="{{item.icon}}">{{item.icon}}</a>
+<p>{{item.tel}}</p>
+
+<hr/>
+
+<li ng-repeat="review in reviews">
+	<p>{{review.user_nickname}}&nbsp;&nbsp;{{review.created_time}}</p>
+	<p>{{review.text_excerpt}}</p>
+	<hr/>
+</li>

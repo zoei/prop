@@ -3,7 +3,7 @@ namespace('App.controller.dianping').CategoriesCtrl = ez.base.BaseController.ext
 
 	init: function($scope, DianPingApi) {
 		$scope.categorielist = DianPingApi.getCategories({city: '上海'}, function(data){
-			$scope.categorie = data[0];
+			$scope.category = data[0];
 		});
 	}
 });
