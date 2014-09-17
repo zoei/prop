@@ -71,7 +71,8 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 						icon: d.photo_url,
 						name: d.name,
 						address: d.address,
-						tel: d.telephone
+						tel: d.telephone,
+						link: d.business_url
 					};
 					items.push(item);
 				}
@@ -165,11 +166,11 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 				for (var i in datalist) {
 					var d = datalist[i];
 					if (!d) continue;
-					var item = {
-						name: d.category_name,
-						neighborhoods: d.subcategoriess
-					};
-					items.push(item);
+					// var item = {
+					// 	category_name: d.category_name,
+					// 	subcategories: d.subcategoriess
+					// };
+					items.push(d);
 				}
 				return items;
 			};
