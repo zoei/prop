@@ -1,0 +1,21 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="carousel slide" id="{{carouselId}}">
+				<ol class="carousel-indicators">
+					<li ng-repeat="slide in slides" data-slide-to="{{$index}}" data-target="{{carouselId}}" class="{{slide.class}}">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div ng-repeat="slide in slides" replace="true" class="item{{slide.class}}">
+						<img alt="" ng-src="{{slide.image}}" />
+						<div class="carousel-caption">
+							<h4>{{slide.text}}</h4>
+							<p>{{slide.text}}</p>
+						</div>
+					</div>
+				</div> <a data-slide="prev" href="#{{carouselId}}" class="left carousel-control">‹</a> <a data-slide="next" href="#{{carouselId}}" class="right carousel-control">›</a>
+			</div>
+		</div>
+	</div>
+</div>
