@@ -12,8 +12,8 @@ html,body{
 	/*min-height:100%;*/
 	height: 100%;
 	/*height:auto !important;*/
-	/*margin:0 auto -80px;*/
-	max-width:640px;
+	/*margin:0 auto -80px;
+	max-width:640px;*/
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 }
