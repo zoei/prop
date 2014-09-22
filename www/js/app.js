@@ -26,7 +26,7 @@ prop.config(['$routeProvider',
 			controller: 'App.controller.DetailCtrl'
 		});
 		$routeProvider.otherwise({
-			redirectTo: '/dianpingtest'
+			redirectTo: '/top'
 		});
 	}
 ]);
