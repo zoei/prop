@@ -3,28 +3,28 @@
 	"sub_title" : "您的生活手册",
 	"slides" : [
 		{
+			"title" : "清真美食1",
 			"image" : "img/1.jpg",
 			"text" : "清真美食1",
-			"class" : " active",
-			"active" : true
+			"class" : " active"
 		},
 		{
+			"title" : "清真美食2",
 			"image" : "img/2.jpg",
 			"text" : "清真美食2",
-			"class" : "",
-			"active" : false
+			"class" : ""
 		},
 		{
+			"title" : "清真美食3",
 			"image" : "img/3.jpg",
 			"text" : "清真美食3",
-			"class" : "",
-			"active" : false
+			"class" : ""
 		},
 		{
+			"title" : "清真美食4",
 			"image" : "img/4.jpg",
 			"text" : "清真美食4",
-			"class" : "",
-			"active" : false
+			"class" : ""
 		}
 	]
 }
