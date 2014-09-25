@@ -1,7 +1,5 @@
-require([
-	'controllers/dianping/CategoriesCtrl'
-]);
 namespace('prop.directives.dianping').Categories = ez.base.BaseDirective.extend({
+	$inject: ['$scope', 'DianPingApi'],
 	directive: 'categories',
 	module: 'prop.directives',
 	restrict: 'EA',
@@ -13,5 +11,19 @@ namespace('prop.directives.dianping').Categories = ez.base.BaseDirective.extend(
 		scope.categoryChangeEventName = attrs['categoryChange'] || 'categoryChange';
 		scope.subCategoryChangeEventName = attrs['subCategoryChange'] || 'subCategoryChange';
 	},
-	controller: App.controller.dianping.CategoriesCtrl
+	controller: function($scope, DianPingApi) {
+		$scope.categories = DianPingApi.getCategories({city: '上海'}, function(data){
+			$scope.category = data[0];
+			$scope.subcategories = $scope.category.subcategories;
+			$scope.subCategory = $scope.subcategories[0];
+		});
+		$scope.categoryChanged = function(category){
+			$scope.subcategories = $scope.category.subcategories;
+			$scope.subCategory = $scope.subcategories[0];
+			$scope.$emit($scope.categoryChangeEventName, category);
+		};
+		$scope.subCategoryChanged = function(subCategory){
+			$scope.$emit($scope.subCategoryChangeEventName, subCategory);
+		};
+	}
 });

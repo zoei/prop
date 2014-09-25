@@ -3,6 +3,4 @@ require([
 	'controllers/TopController',
 	'controllers/ListController',
 	'controllers/DetailController',
-	'controllers/dianping/RegionsCtrl',
-	'controllers/dianping/CategoriesCtrl'
 ]);
