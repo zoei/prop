@@ -1,7 +1,7 @@
-namespace('App.controller');
-App.controller.TopCtrl = ez.base.BaseController.extend({
-	$inject: ['$scope', 'TopFact', 'DianPingApi'],
-	init: function($scope, TopFact, DianPingApi) {
+namespace('App.controller.mobile');
+App.controller.mobile.TopCtrl = ez.base.BaseController.extend({
+	$inject: ['$scope', 'DianPingApi'],
+	init: function($scope, DianPingApi) {
 		var me = this;
 
 		var searchBusiness = function(){

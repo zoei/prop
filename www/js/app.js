@@ -9,6 +9,10 @@ var prop = angular.module('prop', ['ngRoute', 'angular-gestures', 'ez', 'prop.di
 
 prop.config(['$routeProvider',
 	function($routeProvider) {
+		$routeProvider.when('/m/top', {
+			templateUrl: 'partials/m/top.html',
+			controller: 'App.controller.mobile.TopCtrl'
+		});
 		$routeProvider.when('/dianpingtest', {
 			templateUrl: 'partials/dianpingtest.html',
 			controller: 'App.controller.DianPingCtrl'
@@ -26,7 +30,7 @@ prop.config(['$routeProvider',
 			controller: 'App.controller.DetailCtrl'
 		});
 		$routeProvider.otherwise({
-			redirectTo: '/top'
+			redirectTo: '/m/top'
 		});
 	}
 ]);

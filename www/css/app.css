@@ -55,3 +55,26 @@ html,body{
 	background-size: 100%;
 	background-position: center center;
 }
+
+.headroom{
+
+}
+.headroom--pinned{
+	z-index: 10;
+}
+.headroom--unpinned{
+	z-index: 1;
+}
+.headroom--top{
+	/*position: fixed;*/
+	z-index: 10;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+.headroom--not-top{
+	/*position: fixed;*/
+	right: 0;
+	left: 0;
+	top: 0;
+}

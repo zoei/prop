@@ -1,6 +1,8 @@
 require([
+	'controllers/AppCtrl',
 	'controllers/DianPingCtrl',
-	'controllers/TopController',
-	'controllers/ListController',
-	'controllers/DetailController',
+	'controllers/TopCtrl',
+	'controllers/ListCtrl',
+	'controllers/DetailCtrl',
+	'controllers/m/TopCtrl',
 ]);

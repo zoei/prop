@@ -2,7 +2,8 @@
 <categories category-change="cc" sub-category-change="scc"/>
 <div scrollable class="list-group" show-scrollbar="true">
 	<li ng-repeat="item in itemlist" class="list-group-item">
-		<div ng-if="item.icon" class="ez-icon" style="background-image:url('{{item.icon}}')" ng-click="goDetail(item)"></div>
+		<img ng-if="item.icon"class="ez-icon" ng-src="{{item.icon}}"/>
+		<!-- <div ng-if="item.icon" class="ez-icon" style="background-image:url('{{item.icon}}')" ng-click="goDetail(item)"></div> -->
 		<a ng-href="#/detail/{{item.business_id}}" class="list-group-item-heading">{{formatName(item.name)}}</a>
 		<p class="list-group-item-text">{{item.address}}</p>
 		<a ng-href="{{item.link}}">{{search.text}}去点评查看</a>

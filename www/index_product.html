@@ -11,8 +11,10 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body>
-	<div ng-view class="wrap content container"></div>
+<body ng-controller="AppCtrl">
+    <main-view>
+        <div ng-view class="wrap"></div>
+    </main-view>
 
     <script type="text/javascript" src="js/deps.min.js"></script>
     <script type="text/javascript" src="js/require.js" data-main="js/main"></script>

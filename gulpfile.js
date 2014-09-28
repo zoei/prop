@@ -44,6 +44,7 @@ var src_dir_js = src_root + '/js';
 var src_dir_lib = src_root + '/lib';
 var src_dir_img = src_root + '/img';
 var src_dir_css = src_root + '/css';
+var src_dir_fonts = src_root + '/fonts';
 var src_dir_data = src_root + '/data';
 var src_dir_php = src_root + '/php';
 var src_dir_pages = src_root + '/pages';
@@ -56,6 +57,7 @@ var des_dir_js = des_root + '/js';
 var des_dir_lib = des_root + '/lib';
 var des_dir_img = des_root + '/img';
 var des_dir_css = des_root + '/css';
+var des_dir_fonts = des_root + '/fonts';
 var des_dir_data = des_root + '/data';
 var des_dir_php = des_root + '/php';
 var des_dir_pages = des_root + '/pages';
@@ -114,7 +116,8 @@ var tasks = {
 			src_dir_lib + '/angular.js',
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
-			src_dir_lib + '/angular-hammer.js'
+			src_dir_lib + '/angular-hammer.js',
+			src_dir_lib + '/ratchet.min.js'
 		])
 			.pipe(uglify())
 			.pipe(concat(des_file_deps_concat))
@@ -132,7 +135,8 @@ var tasks = {
 			src_dir_lib + '/angular.js',
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
-			src_dir_lib + '/angular-hammer.js'
+			src_dir_lib + '/angular-hammer.js',
+			src_dir_lib + '/ratchet.js'
 		])
 			.pipe(gulp.dest(des_dir_js));
 		gulp.src(src_dir_lib + '/require.js')
@@ -149,6 +153,7 @@ var tasks = {
 		gulp.src(src_dir_php + '/**/*.*').pipe(gulp.dest(des_dir_php));
 		gulp.src(src_dir_partials + '/**/*.*').pipe(gulp.dest(des_dir_partials));
 		gulp.src(src_dir_css + '/**/*.*').pipe(gulp.dest(des_dir_css));
+		gulp.src(src_dir_fonts + '/**/*.*').pipe(gulp.dest(des_dir_fonts));
 	},
 	optimize: function(cb) {
 		requirejs.optimize(requirejs_config);
