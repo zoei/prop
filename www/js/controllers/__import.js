@@ -4,5 +4,6 @@ require([
 	'controllers/TopCtrl',
 	'controllers/ListCtrl',
 	'controllers/DetailCtrl',
+	'controllers/BootCtrl',
 	'controllers/m/TopCtrl',
 ]);

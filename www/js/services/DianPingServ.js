@@ -6,8 +6,8 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 		var factory = {};
 		var way = 'server';
 		var common = {
-			appkey: '86484869',
-			secret: '0c7c60d99eca4f7a9c02b1dcec69367c',
+			appkey: '5589931241',//86484869',
+			secret: '16adbf199c38458f847f4c99d25cab4d',//'0c7c60d99eca4f7a9c02b1dcec69367c',
 			getSecretSign: function(param) {
 				var array = new Array();
 				for (var key in param) {
@@ -43,16 +43,17 @@ prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
 			var defaultParams = {
 				city: "上海",
 				category: "美食",
-				region: "黄浦区",
-				latitude: '31.218931',
-				longitude: '121.463939',
+				// region: "黄浦区",
+				latitude: '31.18268013000488',
+				longitude: '121.42769622802734',
 				limit: "20",
 				radius: "5000",
-				offset_type: "2",
-				has_coupon: "1",
+				offset_type: "1",
+				out_offset_type: "1",
 				has_deal: "1",
 				// keyword: "菜",
-				sort: "7",
+				sort: "1",
+				platform: 2
 			};
 
 			var transform = function(data) {

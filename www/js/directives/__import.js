@@ -2,6 +2,7 @@ require([
 	'directives/directives',
 	'directives/MainView',
 	'directives/Navigation',
+    'directives/TitleBar',
 	'directives/Footer',
 	'directives/dianping/Regions',
 	'directives/dianping/Categories',

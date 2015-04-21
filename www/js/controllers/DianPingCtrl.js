@@ -4,7 +4,7 @@ namespace('App.controller').DianPingCtrl = ez.base.BaseController.extend({
 	init: function($scope, DianPingApi) {
 		var searchBusiness = function(){
 			var params = {};
-			params.region = $scope.region ? $scope.region.name : '黄浦区';
+			// params.region = $scope.region ? $scope.region.name : '黄浦区';
 			params.category = $scope.category ? $scope.category.category_name : '美食';
 			if($scope.subCategory && $scope.subCategory.category_name){
 				params.keyword = $scope.subCategory.category_name;
@@ -26,7 +26,7 @@ namespace('App.controller').DianPingCtrl = ez.base.BaseController.extend({
 
 		$scope.formatName = function(name) {
 			/(.*)\(.*\)/.test(name);
-			return RegExp.$1 || name;
+			return /(.*)\(.*\)/.test(name) ? RegExp.$1 : name;
 		};
 
 		$scope.goDetail = function(item) {

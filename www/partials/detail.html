@@ -1,9 +1,7 @@
-<div ng-if="item.icon" class="ez-icon" style="background-image:url('{{item.icon}}')" ng-click="goDetail(item)"></div>
+<a ng-if="item.icon" class="bus-pic" style="background-image:url('{{item.icon}}')" ng-href="{{item.icon}}"></a>
 <a ng-href="#/detail/{{item.business_id}}">{{formatName(item.name)}}</a>
-<p>{{item.address}}</p>
-<a ng-href="{{item.icon}}">{{item.icon}}</a>
-<p>{{item.tel}}</p>
-
+<p><a ng-href="{{item.address}}">{{item.address}}</a></p>
+<p><a ng-href="{{item.tel}}">{{item.tel}}</a></p>
 <hr/>
 
 <div scrollable class="list-group" show-scrollbar="true" class="list-group">

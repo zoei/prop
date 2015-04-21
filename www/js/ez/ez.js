@@ -1,4 +1,4 @@
-require([
+define([
 	'ez/utils/Extend',
 	'ez/utils/Crypto',
 	'ez/utils/Base64',
@@ -9,6 +9,6 @@ require([
 	'ez/base/BaseDirective',
 	'ez/directives/__import',
 	// 'ez/controllers/__import'
-]);
-
-angular.module('ez', ['ez.directives']);
+], function(argument) {
+	return angular.module('ez', ['ez.directives']);
+});

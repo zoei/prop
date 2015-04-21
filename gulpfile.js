@@ -117,7 +117,7 @@ var tasks = {
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
 			src_dir_lib + '/angular-hammer.js',
-			src_dir_lib + '/ratchet.min.js'
+			// src_dir_lib + '/ratchet.min.js'
 		])
 			.pipe(uglify())
 			.pipe(concat(des_file_deps_concat))
@@ -136,7 +136,7 @@ var tasks = {
 			src_dir_lib + '/angular-route.js',
 			src_dir_lib + '/angular-resource.js',
 			src_dir_lib + '/angular-hammer.js',
-			src_dir_lib + '/ratchet.js'
+			// src_dir_lib + '/ratchet.js'
 		])
 			.pipe(gulp.dest(des_dir_js));
 		gulp.src(src_dir_lib + '/require.js')

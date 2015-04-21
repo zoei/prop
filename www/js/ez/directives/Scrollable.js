@@ -6,7 +6,7 @@ namespace('ez.directives').Scrollable = ez.base.BaseDirective.extend({
 	transclude: true,
 	template: '<div ng-transclude></div>',
 	link: function(scope, element, attrs) {
-		element.addClass('wrapper');
+		element.addClass('scroll-wrapper');
 		var _scroller = new IScroll(element.context, {
 			scrollbars: !!attrs.showScrollbar,
 			// 滚动条不拖动时隐藏

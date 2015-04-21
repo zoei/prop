@@ -3,7 +3,7 @@ namespace('prop.directives').MainView = ez.base.BaseDirective.extend({
 	directive: 'mainView',
 	module: 'prop.directives',
 	restrict: 'EA',
-	template: '<navigation/>'+
+	template: '<title-bar class="panel"></title-bar>'+
 				'<div ng-transclude/>'+
 				'<foot-content/>',
 	transclude: true
