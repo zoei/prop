@@ -1931,7 +1931,7 @@ Hammer.defaults = {
         // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
         [RotateRecognizer, { enable: false }],
         [PinchRecognizer, { enable: false }, ['rotate']],
-        [SwipeRecognizer,{ direction: DIRECTION_HORIZONTAL }],
+        [SwipeRecognizer,{ direction: DIRECTION_HORIZONTAL | DIRECTION_VERTICAL }],
         [PanRecognizer, { direction: DIRECTION_HORIZONTAL }, ['swipe']],
         [TapRecognizer],
         [TapRecognizer, { event: 'doubletap', taps: 2 }, ['tap']],

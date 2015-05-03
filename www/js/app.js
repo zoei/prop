@@ -25,8 +25,14 @@ define([
 			}).when('/detail/:business_id', {
 				templateUrl: 'partials/detail.html',
 				controller: 'App.controller.DetailCtrl'
+			}).when('/game', {
+				templateUrl: 'partials/game.html',
+				controller: 'App.controller.GameCtrl'
+			}).when('/grapes', {
+				templateUrl: 'partials/grapes/home.html',
+				controller: 'App.controller.GrapesHomeCtrl'
 			}).otherwise({
-				redirectTo: '/m/top'
+				redirectTo: '/grapes'
 			});
 		}
 	]);

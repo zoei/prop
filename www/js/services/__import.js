@@ -4,4 +4,5 @@ require([
 	'services/PhoneServ',
 	'services/MuslimServ',
 	'services/DianPingServ',
+	'services/GrapesServ',
 ]);

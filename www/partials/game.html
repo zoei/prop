@@ -1,0 +1,13 @@
+<div class="game-panel">
+	<div class="control-panel">
+		<div class="high-score" ng-click="onScoreClick">高分</br>{{high_score}}</div>
+		<div class="score animated">得分</br>{{score}}</div>
+	</div>
+	<div class="card-area" hm-swipe="onSwipe($event)">
+		<div ng-repeat="col in cards">
+			<div ng-repeat="card in col" id="c-{{card.card_id}}" class="card card-empty-{{card.empty}} animated" ng-click="showCardInfo(card)" style="left:{{CARD_WIDTH*$index}}px; top:{{CARD_WIDTH*$parent.$index}}px;">
+				{{card.num}}
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,4 +6,6 @@ require([
 	'controllers/DetailCtrl',
 	'controllers/BootCtrl',
 	'controllers/m/TopCtrl',
+	'controllers/GameCtrl',
+	'controllers/grapes/GrapesHomeCtrl'
 ]);

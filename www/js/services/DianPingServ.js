@@ -1,8 +1,8 @@
 require([
 	'utils/HTTPProxyUtil'
 ]);
-prop.services.factory('DianPingApi', ['$rootScope', 'HTTPProxy',
-	function($rootScope, HTTPProxy) {
+prop.services.factory('DianPingApi', ['HTTPProxy',
+	function(HTTPProxy) {
 		var factory = {};
 		var way = 'server';
 		var common = {
