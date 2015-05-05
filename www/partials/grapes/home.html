@@ -1,4 +1,19 @@
-<li ng-repeat="act in activities" hm-tap="onTap($event)" class="list-group-item">
-  {{act.title}}
-</li>
+<div ng-show="!!currentUser">
+  <a href="#/grapes_user_console">{{currentUser}}</a>
+  <button class="btn btn-default" hm-tap="logout()" type="button">Log out</button>
+</div>
+<div ng-show="!currentUser" >
+  <button class="btn btn-default" hm-tap="goLogin()" type="button">Login</button>
+  <button class="btn btn-default" hm-tap="goRegister()" type="button">Register</button>
+</div>
+
+<div class="list-group">
+  <li ng-repeat="act in userActivities" hm-tap="onActTap(act)" class="list-group-item">
+    <span>{{act.title}}</span>
+    <span class="pull-right">{{act.time}}</span>
+  </li>
+  <li ng-repeat="act in pub_acts" hm-tap="onActTap(act)" class="list-group-item">
+    <span>{{act.title}}</span>
+    <span class="pull-right">{{act.time}}</span>
+  </li>
 </div>

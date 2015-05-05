@@ -7,5 +7,10 @@ require([
 	'controllers/BootCtrl',
 	'controllers/m/TopCtrl',
 	'controllers/GameCtrl',
-	'controllers/grapes/GrapesHomeCtrl'
+	'controllers/grapes/GrapesHomeCtrl',
+  'controllers/grapes/GrapesDetailCtrl',
+  'controllers/grapes/GrapesUserLoginCtrl',
+  'controllers/grapes/GrapesUserRegCtrl',
+  'controllers/grapes/GrapesUserConsoleCtrl',
+  'controllers/grapes/GrapesNewActivityCtrl'
 ]);

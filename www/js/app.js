@@ -31,6 +31,21 @@ define([
 			}).when('/grapes', {
 				templateUrl: 'partials/grapes/home.html',
 				controller: 'App.controller.GrapesHomeCtrl'
+			}).when('/grapes_detail/:act_id', {
+				templateUrl: 'partials/grapes/detail.html',
+				controller: 'App.controller.GrapesDetailCtrl'
+			}).when('/grapes_user_login', {
+				templateUrl: 'partials/grapes/login.html',
+				controller: 'App.controller.GrapesUserLoginCtrl'
+			}).when('/grapes_user_reg', {
+				templateUrl: 'partials/grapes/register.html',
+				controller: 'App.controller.GrapesUserRegCtrl'
+			}).when('/grapes_user_console', {
+				templateUrl: 'partials/grapes/user_console.html',
+				controller: 'App.controller.GrapesUserConsoleCtrl'
+			}).when('/grapes_new_activity', {
+				templateUrl: 'partials/grapes/new_activity.html',
+				controller: 'App.controller.GrapesNewActivityCtrl'
 			}).otherwise({
 				redirectTo: '/grapes'
 			});

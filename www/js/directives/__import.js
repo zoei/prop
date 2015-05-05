@@ -2,8 +2,9 @@ require([
 	'directives/directives',
 	'directives/MainView',
 	'directives/Navigation',
-    'directives/TitleBar',
+  'directives/TitleBar',
 	'directives/Footer',
 	'directives/dianping/Regions',
 	'directives/dianping/Categories',
+  'directives/grapes/ActivityItem',
 ]);

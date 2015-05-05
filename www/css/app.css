@@ -187,3 +187,11 @@ title-bar .more{
 	font-size: 20px;
 	padding: 15px 0px;
 }
+
+.login-panel{
+  margin: 20px;
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+  background: rgb(100, 69, 126);
+}
