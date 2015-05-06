@@ -4,7 +4,7 @@ require([
 prop.services.factory('GrapesServ', ['HTTPProxy',
 	function(HTTPProxy) {
 		var factory = {};
-		var way = 'jsonp';
+		var way = 'ajax';// jsonp/server
 
 		factory.getUser = function(params, callback) {
 			var defaultParams = {
@@ -250,7 +250,7 @@ prop.services.factory('GrapesServ', ['HTTPProxy',
 		factory.doRegister = function(params, callback) {
 			var defaultParams = {
 				_id: 1,
-				api: 'user_reg',
+				api: 'add_user',
 				user: params.username,
 				password: params.userpass,
 				nickname: params.nickname,

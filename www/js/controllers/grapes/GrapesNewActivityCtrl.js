@@ -61,7 +61,6 @@ App.controller.GrapesNewActivityCtrl = ez.base.BaseController.extend({
                 image_urls: $scope.image_urls,
                 scope: $scope.scope
             }, function(result){
-                console.log(result.act_id);
                 $scope.act = result.act_id;
                 $scope.saveItems();
             });
@@ -87,7 +86,11 @@ App.controller.GrapesNewActivityCtrl = ez.base.BaseController.extend({
                 act: $scope.act,
                 items: items
             }, function(result){
-                console.debug(result);
+                if(result.success){
+                    window.location.hash = '#/grapes_detail/' + $scope.act;
+                } else {
+                    alert('error');
+                }
             });
         }
     }
